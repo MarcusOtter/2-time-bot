@@ -11,10 +11,7 @@ namespace Logic.OAuth
 {
     public interface IOAuth1Request
     {
-        void AddNewHeader(string newHeaderKey, string value);
         HttpRequestMessage ToHttpRequestMessage();
-        void RemoveHeader(string headerKey);
-        void SetHeader(string headerKey, string value);
     }
 
     public class OAuth1Request : IOAuth1Request
@@ -58,34 +55,11 @@ namespace Logic.OAuth
             SetHeader("oauth_signature", signature);
         }
 
-        public void AddNewHeader(string newHeaderKey, string value)
-        {
-            if (_headers.ContainsKey(newHeaderKey))
-            {
-                ThrowHeaderMissingException(newHeaderKey, $"Use {nameof(SetHeader)} if you want to add a new header");
-            }
-
-            var newKey = HttpUtility.UrlEncode(newHeaderKey);
-            var newValue = HttpUtility.UrlEncode(value);
-
-            _headers.Add(newKey, newValue);
-        }
-
-        public void RemoveHeader(string headerKey)
-        {
-            if (!_headers.ContainsKey(headerKey))
-            {
-                ThrowHeaderMissingException(headerKey);
-            }
-
-            _headers.Remove(headerKey);
-        }
-
         public void SetHeader(string headerKey, string value)
         {
             if (!_headers.ContainsKey(headerKey))
             {
-                ThrowHeaderMissingException(headerKey, $"Use {nameof(AddNewHeader)} if you want to add a new header");
+                ThrowHeaderMissingException(headerKey);
             }
 
             var newKey = HttpUtility.UrlEncode(headerKey);
@@ -183,14 +157,9 @@ namespace Logic.OAuth
             }
         }
 
-        private void ThrowHeaderMissingException(string headerKey, string additionalInfo = "")
+        private void ThrowHeaderMissingException(string headerKey)
         {
-            var defaultMessage = $"The header \"{headerKey}\" does not exist";
-            var message = string.IsNullOrEmpty(additionalInfo)
-                ? defaultMessage
-                : $"{defaultMessage}. {additionalInfo}";
-
-            throw new KeyNotFoundException(message);
+            throw new KeyNotFoundException($"The header \"{headerKey}\" does not exist");
         }
 
         private long GetUnixEpochTimeNow()
