@@ -1,37 +1,34 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using Logic.OAuth;
+using System;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Logic.OutputClients
 {
     public class TwitterClient : IOutputClient
     {
-        private readonly HttpClient _httpClient;
+        private const string _twitterApiUrl = "https://api.twitter.com/1.1/statuses/update.json";
+        private readonly IOAuth1Client _oAuth1Client;
 
-        public TwitterClient(HttpClient httpClient)
+        public TwitterClient(IOAuth1Client oAuth1Client)
         {
-            _httpClient = httpClient;
+            _oAuth1Client = oAuth1Client;
         }
         
-        public Task<bool> SendMessage(TwoTimeMessage message)
+        public Task<bool> SendMessageAsync(TwoTimeMessage message)
         {
             return Tweet(message);
         }
 
         private async Task<bool> Tweet(TwoTimeMessage message)
         {
-            var request = new HttpRequestMessage()
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri("https://api.twitter.com/1.1/statuses/update.json")
-            };
+            var msgString = message.Text;
+            // Temp url encoding here, should take a string in client probably
+            var url = $"{_twitterApiUrl}?status={HttpUtility.UrlEncode(msgString)}";
+            var uri = new Uri(url);
 
-            request.Headers.Authorization = new AuthenticationHeaderValue("OAuth ");
-
-
-            await _httpClient.SendAsync(request);
-            return await Task.FromResult(true);
+            var response = await _oAuth1Client.PostAsync(uri);
+            return response.IsSuccessStatusCode;
         }
     }
 }

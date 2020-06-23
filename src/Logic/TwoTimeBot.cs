@@ -1,14 +1,12 @@
 ﻿using Logic.OutputClients;
-using System;
-using System.Data;
-using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Logic
 {
     public interface ITwoTimeBot
     {
-        void Start();
-        void Stop();
+        Task StartAsync();
+        Task StopAsync();
     }
 
     public class TwoTimeBot : ITwoTimeBot
@@ -20,11 +18,13 @@ namespace Logic
             _outputClient = outputClient;
         }
 
-        public void Start()
+        public async Task StartAsync()
         {
+            var message = new TwoTimeMessage("test");
+            await _outputClient.SendMessageAsync(message);
         }
 
-        public void Stop()
+        public async Task StopAsync()
         {
         }
     }

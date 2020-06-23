@@ -13,8 +13,6 @@ namespace UI
     {
         private async static Task Main(string[] args)
         {
-            Console.WriteLine(MessageProvider.DefaultCelebrationMessage.Text);
-
             var serviceCollection = new ServiceCollection()
                 .AddSingleton<ITwoTimeBot, TwoTimeBot>()
                 .AddSingleton<IStorage, InMemoryStorage>()
@@ -25,7 +23,7 @@ namespace UI
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var bot = serviceProvider.GetService<ITwoTimeBot>();
-            bot.Start();
+            await bot.StartAsync();
         }
     }
 }
