@@ -4,6 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 	<LangVersion>latest</LangVersion>
 	<Nullable>enable</Nullable>
+	<UserSecretsId>af5ed63d-179f-4928-82c5-e6898801034a</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TweetinviAPI" Version="5.0.0-alpha-6" />
+  </ItemGroup>
 
 </Project>

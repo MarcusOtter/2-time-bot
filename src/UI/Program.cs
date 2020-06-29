@@ -1,9 +1,7 @@
 ﻿using Logic;
-using Logic.OAuth;
 using Logic.OutputClients;
 using Logic.Storage;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -16,9 +14,8 @@ namespace UI
             var serviceCollection = new ServiceCollection()
                 .AddSingleton<ITwoTimeBot, TwoTimeBot>()
                 .AddSingleton<IStorage, InMemoryStorage>()
-                .AddSingleton<IOutputClient, TwitterClient>()
-                .AddSingleton<HttpClient>()
-                .AddSingleton<IOAuth1Client, OAuth1Client>();
+                .AddSingleton<IOutputClient, TwitterOutputClient>()
+                .AddSingleton<HttpClient>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
