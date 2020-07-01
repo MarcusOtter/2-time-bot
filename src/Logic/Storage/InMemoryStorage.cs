@@ -1,20 +1,26 @@
-﻿using Logic.Storage;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Logic.Storage
 {
     public class InMemoryStorage : IStorage
     {
-        private readonly Dictionary<string, object> _objectDictionary = new Dictionary<string, object>();
+        private readonly Dictionary<StorageItem, object> _objectDictionary = new Dictionary<StorageItem, object>();
 
-        public bool Contains(string key)
+        public InMemoryStorage()
+        {
+            // TODO: Make new persistent storage
+            Store(StorageItem.ConsumerKey,    "REDACTED");
+            Store(StorageItem.ConsumerSecret, "REDACTED");
+            Store(StorageItem.AccessToken,    "REDACTED");
+            Store(StorageItem.AccessSecret,   "REDACTED");
+        }
+
+        public bool Contains(StorageItem key)
         {
             return _objectDictionary.ContainsKey(key);
         }
 
-        public bool TryGet<T>(string key, out T obj)
+        public bool TryGet<T>(StorageItem key, out T obj)
         {
             obj = default!;
 
@@ -31,7 +37,7 @@ namespace Logic.Storage
             return true;
         }
 
-        public bool Store<T>(string key, T obj)
+        public bool Store<T>(StorageItem key, T obj)
         {
             if (!Contains(key))
             {

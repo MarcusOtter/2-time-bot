@@ -2,8 +2,8 @@
 {
     public interface IStorage
     {
-        bool Contains(string key);
-        bool TryGet<T>(string key, out T obj);
-        bool Store<T>(string key, T obj);
+        bool Contains(StorageItem key);
+        bool TryGet<T>(StorageItem key, out T obj);
+        bool Store<T>(StorageItem key, T obj);
     }
 }
