@@ -1,4 +1,5 @@
-﻿using Logic.OutputClients;
+﻿using Logic.Extensions;
+using Logic.OutputClients;
 using System;
 using System.Threading.Tasks;
 
@@ -29,15 +30,15 @@ namespace Logic
 
                 if (!IsTwoTime(currentTime))
                 {
-                    await DelayUntilTwoTimeAsync(currentTime).ConfigureAwait(false);
+                    await DelayUntilTwoTimeAsync(currentTime).GetAwaitable();
                     continue;
                 }
 
-                await SendTwoTimeMessageAsync().ConfigureAwait(false);
+                await SendTwoTimeMessageAsync().GetAwaitable();
                 Console.WriteLine("2-time tweet sent!");
 
                 // We re-calculate current time to account for the time it took to make the HTTP request
-                await DelayUntilTwoTimeAsync(GetCurrentTime()).ConfigureAwait(false);
+                await DelayUntilTwoTimeAsync(GetCurrentTime()).GetAwaitable();
             }
         }
 
