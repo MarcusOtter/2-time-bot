@@ -2,6 +2,7 @@
 using Logic.Helpers;
 using System;
 using System.Threading.Tasks;
+using Logic.Logging;
 
 namespace Logic
 {
@@ -14,11 +15,13 @@ namespace Logic
     public class TwoTimeBot : ITwoTimeBot
     {
         private readonly IOutputClient _outputClient;
+        private readonly ILogger _logger;
         private bool _running;
 
-        public TwoTimeBot(IOutputClient outputClient)
+        public TwoTimeBot(IOutputClient outputClient, ILogger logger)
         {
             _outputClient = outputClient;
+            _logger = logger;
         }
 
         public async Task RunIndefinitelyAsync()
@@ -35,7 +38,7 @@ namespace Logic
                 }
 
                 await SendTwoTimeMessageAsync().FreeContext();
-                Console.WriteLine("2-time tweet sent!");
+                _logger.Log("It's 2-time!! I've sent the tweet.");
 
                 currentTime = TimeHelper.GetCurrentTime(); // Recalculate current time to account for the time spent sending the messages
                 await DelayUntilTwoTimeAsync(currentTime).FreeContext();
@@ -48,12 +51,12 @@ namespace Logic
             return Task.CompletedTask;
         }
 
-        private static Task DelayUntilTwoTimeAsync(DateTimeOffset currentTime)
+        private Task DelayUntilTwoTimeAsync(DateTimeOffset currentTime)
         {
             var timeUntilTwoTime = currentTime.GetTimeUntilNextTwoTime();
             var delayInMs = (int) timeUntilTwoTime.TotalMilliseconds;
 
-            Console.WriteLine($"Waiting {timeUntilTwoTime} until next two-time.");
+            _logger.Log($"Waiting {timeUntilTwoTime} until next two-time.");
             return Task.Delay(delayInMs);
         }
 

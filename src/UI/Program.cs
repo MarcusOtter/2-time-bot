@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Logic.Logging;
 using Logic.OutputClients;
 using Logic.Storage;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ namespace UI
                 .AddSingleton<ITwoTimeBot, TwoTimeBot>()
                 .AddSingleton<IStorage, InMemoryStorage>()
                 .AddSingleton<IOutputClient, TwitterOutputClient>()
+                .AddSingleton<ILogger, ConsoleLogger>()
                 .AddSingleton<HttpClient>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
