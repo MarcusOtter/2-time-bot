@@ -26,9 +26,9 @@ namespace Logic
             _running = true;
             while (_running)
             {
-                var currentTime = GetCurrentTime();
+                var currentTime = TimeHelper.GetCurrentTime();
 
-                if (!IsTwoTime(currentTime))
+                if (!currentTime.IsTwoTime())
                 {
                     await DelayUntilTwoTimeAsync(currentTime).FreeContext();
                     continue;
@@ -37,7 +37,7 @@ namespace Logic
                 await SendTwoTimeMessageAsync().FreeContext();
                 Console.WriteLine("2-time tweet sent!");
 
-                currentTime = TimeHelper.GetCurrentTime(); // Recalculates current time to account for the time spent sending the messages
+                currentTime = TimeHelper.GetCurrentTime(); // Recalculate current time to account for the time spent sending the messages
                 await DelayUntilTwoTimeAsync(currentTime).FreeContext();
             }
         }
@@ -48,35 +48,13 @@ namespace Logic
             return Task.CompletedTask;
         }
 
-        private DateTimeOffset GetCurrentTime()
+        private static Task DelayUntilTwoTimeAsync(DateTimeOffset currentTime)
         {
-            return DateTimeOffset.Now;
-        }
-
-        private Task DelayUntilTwoTimeAsync(DateTimeOffset currentTime)
-        {
-            var timeUntilTwoTime = GetTimeUntilNextTwoTime(currentTime);
+            var timeUntilTwoTime = currentTime.GetTimeUntilNextTwoTime();
             var delayInMs = (int) timeUntilTwoTime.TotalMilliseconds;
 
             Console.WriteLine($"Waiting {timeUntilTwoTime} until next two-time.");
             return Task.Delay(delayInMs);
-        }
-
-        private TimeSpan GetTimeUntilNextTwoTime(DateTimeOffset currentTime)
-        {
-            var dayOffset = NextTwoTimeIsTomorrow(currentTime) ? 1 : 0;
-            var nextTwoTime = new DateTimeOffset(new DateTime(currentTime.Year, currentTime.Month, currentTime.Day + dayOffset, 22, 22, 22, 22, DateTimeKind.Local));
-            return nextTwoTime - currentTime;
-        }
-
-        private bool NextTwoTimeIsTomorrow(DateTimeOffset currentTime)
-        {
-            return IsTwoTime(currentTime) || currentTime.Hour > 22 || (currentTime.Hour == 22 && currentTime.Minute > 22);
-        }
-
-        private bool IsTwoTime(DateTimeOffset dateTime)
-        {
-            return dateTime.Hour == 22 && dateTime.Minute == 22;
         }
 
         private Task SendTwoTimeMessageAsync()
