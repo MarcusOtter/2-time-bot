@@ -1,5 +1,5 @@
-﻿using Logic.Extensions;
-using Logic.OutputClients;
+﻿using Logic.OutputClients;
+using Logic.Helpers;
 using System;
 using System.Threading.Tasks;
 
@@ -7,7 +7,7 @@ namespace Logic
 {
     public interface ITwoTimeBot
     {
-        Task RunAsync();
+        Task RunIndefinitelyAsync();
         Task StopAsync();
     }
 
@@ -21,7 +21,7 @@ namespace Logic
             _outputClient = outputClient;
         }
 
-        public async Task RunAsync()
+        public async Task RunIndefinitelyAsync()
         {
             _running = true;
             while (_running)
@@ -30,15 +30,15 @@ namespace Logic
 
                 if (!IsTwoTime(currentTime))
                 {
-                    await DelayUntilTwoTimeAsync(currentTime).GetAwaitable();
+                    await DelayUntilTwoTimeAsync(currentTime).FreeContext();
                     continue;
                 }
 
-                await SendTwoTimeMessageAsync().GetAwaitable();
+                await SendTwoTimeMessageAsync().FreeContext();
                 Console.WriteLine("2-time tweet sent!");
 
-                // We re-calculate current time to account for the time it took to make the HTTP request
-                await DelayUntilTwoTimeAsync(GetCurrentTime()).GetAwaitable();
+                currentTime = TimeHelper.GetCurrentTime(); // Recalculates current time to account for the time spent sending the messages
+                await DelayUntilTwoTimeAsync(currentTime).FreeContext();
             }
         }
 

@@ -1,5 +1,4 @@
-﻿using Logic.Extensions;
-using Logic.Storage;
+﻿using Logic.Storage;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tweetinvi;
@@ -27,7 +26,7 @@ namespace Logic.OutputClients
 
         public async Task<bool> SendMessageAsync(TwoTimeMessage text)
         {
-            await _twitterClient.Tweets.PublishTweetAsync(text.Text).GetAwaitable();
+            await _twitterClient.Tweets.PublishTweetAsync(text.Text).FreeContext();
             return true;
         }
     }

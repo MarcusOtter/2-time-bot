@@ -20,7 +20,7 @@ namespace UI
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var bot = serviceProvider.GetService<ITwoTimeBot>();
-            await bot.RunAsync().ConfigureAwait(false);
+            await bot.RunIndefinitelyAsync().FreeContext();
         }
     }
 }
