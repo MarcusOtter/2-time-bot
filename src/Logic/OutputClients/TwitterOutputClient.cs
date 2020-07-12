@@ -11,10 +11,10 @@ namespace Logic.OutputClients
 
         public TwitterOutputClient(IStorage storage)
         {
-            var hasConsumerKey    = storage.TryGet(StorageItem.ConsumerKey,    out string consumerKey);
-            var hasConsumerSecret = storage.TryGet(StorageItem.ConsumerSecret, out string consumerSecret);
-            var hasAccessToken    = storage.TryGet(StorageItem.AccessToken,    out string accessToken);
-            var hasAccessSecret   = storage.TryGet(StorageItem.AccessSecret,   out string accessSecret);
+            var hasConsumerKey    = storage.TryGet(StorageItemType.ConsumerKey,    out string consumerKey);
+            var hasConsumerSecret = storage.TryGet(StorageItemType.ConsumerSecret, out string consumerSecret);
+            var hasAccessToken    = storage.TryGet(StorageItemType.AccessToken,    out string accessToken);
+            var hasAccessSecret   = storage.TryGet(StorageItemType.AccessSecret,   out string accessSecret);
 
             if (!hasConsumerKey || !hasConsumerSecret || !hasAccessToken || !hasAccessSecret)
             {

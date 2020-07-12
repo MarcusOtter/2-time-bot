@@ -4,23 +4,23 @@ namespace Logic.Storage
 {
     public class InMemoryStorage : IStorage
     {
-        private readonly Dictionary<StorageItem, object> _objectDictionary = new Dictionary<StorageItem, object>();
+        private readonly Dictionary<StorageItemType, object> _objectDictionary = new Dictionary<StorageItemType, object>();
 
         public InMemoryStorage()
         {
             // TODO: Make new persistent storage
-            Store(StorageItem.ConsumerKey,    "REDACTED");
-            Store(StorageItem.ConsumerSecret, "REDACTED");
-            Store(StorageItem.AccessToken,    "REDACTED");
-            Store(StorageItem.AccessSecret,   "REDACTED");
+            Store(StorageItemType.ConsumerKey,    "REDACTED");
+            Store(StorageItemType.ConsumerSecret, "REDACTED");
+            Store(StorageItemType.AccessToken,    "REDACTED");
+            Store(StorageItemType.AccessSecret,   "REDACTED");
         }
 
-        public bool Contains(StorageItem key)
+        public bool Contains(StorageItemType key)
         {
             return _objectDictionary.ContainsKey(key);
         }
 
-        public bool TryGet<T>(StorageItem key, out T obj)
+        public bool TryGet<T>(StorageItemType key, out T obj)
         {
             obj = default!;
 
@@ -37,7 +37,7 @@ namespace Logic.Storage
             return true;
         }
 
-        public bool Store<T>(StorageItem key, T obj)
+        public bool Store<T>(StorageItemType key, T obj)
         {
             if (!Contains(key))
             {

@@ -1,6 +1,6 @@
 ﻿namespace Logic.Storage
 {
-    public enum StorageItem
+    public enum StorageItemType
     {
         ConsumerKey,
         ConsumerSecret,
