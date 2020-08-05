@@ -7,7 +7,7 @@ namespace Logic.Logging
     {
         public void Log(string message)
         {
-            Console.WriteLine($"[{TimeHelper.GetCurrentTime():dd MMMM hh:mm}]: {message}");
+            Console.WriteLine($"[{TimeHelper.GetCurrentTime():dd MMMM HH:mm:ss}]: {message}");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tweetinvi;
+using Tweetinvi.Parameters;
 
 namespace Logic.OutputClients
 {
@@ -24,9 +25,14 @@ namespace Logic.OutputClients
             _twitterClient = new TwitterClient(consumerKey, consumerSecret, accessToken, accessSecret);
         }
 
-        public async Task<bool> SendMessageAsync(TwoTimeMessage text)
+        public async Task<bool> SendMessageAsync(TwoTimeMessage message)
         {
-            await _twitterClient.Tweets.PublishTweetAsync(text.Text).FreeContext();
+            var tweetParams = new PublishTweetParameters()
+            {
+                Text = message.Text
+            };
+
+            await _twitterClient.Tweets.PublishTweetAsync(tweetParams).FreeContext();
             return true;
         }
     }

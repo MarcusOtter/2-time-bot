@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
     <PackageReference Include="TweetinviAPI" Version="5.0.0-alpha-6" />
   </ItemGroup>
 

@@ -10,14 +10,15 @@ namespace UI
 {
     public class Program
     {
-        private async static Task Main(string[] args)
+        private async static Task Main()
         {
             var serviceCollection = new ServiceCollection()
                 .AddSingleton<ITwoTimeBot, TwoTimeBot>()
                 .AddSingleton<IStorage, InMemoryStorage>()
                 .AddSingleton<IOutputClient, TwitterOutputClient>()
                 .AddSingleton<ILogger, ConsoleLogger>()
-                .AddSingleton<HttpClient>();
+                .AddSingleton<HttpClient>()
+                .AddSingleton<IMessageProvider, MessageProvider>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
