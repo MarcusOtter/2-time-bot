@@ -21,9 +21,14 @@ namespace Logic.Helpers
 
         public static TimeSpan GetTimeUntilNextTwoTime(this DateTimeOffset currentTime)
         {
-            var dayOffset = currentTime.NextTwoTimeIsTomorrow() ? 1 : 0;
-            var nextTwoTime = new DateTimeOffset(new DateTime(currentTime.Year, currentTime.Month, currentTime.Day + dayOffset, 22, 22, 22, 22, DateTimeKind.Local));
-            return nextTwoTime - currentTime;
+            var nextTwoTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 22, 22, 22, 22, DateTimeKind.Local);
+
+            if (currentTime.NextTwoTimeIsTomorrow())
+            {
+                nextTwoTime.AddDays(1);
+            }
+
+            return new DateTimeOffset(nextTwoTime) - currentTime;
         }
     }
 }
