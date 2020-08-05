@@ -25,7 +25,7 @@ namespace Logic.Helpers
 
             if (currentTime.NextTwoTimeIsTomorrow())
             {
-                nextTwoTime.AddDays(1);
+                nextTwoTime = nextTwoTime.AddDays(1);
             }
 
             return new DateTimeOffset(nextTwoTime) - currentTime;
