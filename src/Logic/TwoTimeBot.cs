@@ -1,8 +1,7 @@
-﻿using Logic.OutputClients;
-using Logic.Helpers;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Logic.OutputClients;
 using Logic.Logging;
+using Logic.Time;
 
 namespace Logic
 {
@@ -17,33 +16,34 @@ namespace Logic
         private readonly IOutputClient _outputClient;
         private readonly ILogger _logger;
         private readonly IMessageProvider _messageProvider;
+        private readonly ITimeSynchronization _timeSync;
         private bool _running;
 
-        public TwoTimeBot(IOutputClient outputClient, ILogger logger, IMessageProvider messageProvider)
+        public TwoTimeBot(IOutputClient outputClient, ILogger logger, IMessageProvider messageProvider, ITimeSynchronization timeSync)
         {
             _outputClient = outputClient;
             _logger = logger;
             _messageProvider = messageProvider;
+            _timeSync = timeSync;
         }
 
         public async Task RunIndefinitelyAsync()
         {
             _running = true;
+            var nextMessage = await FetchNextTwoTimeMessageAsync().FreeContext();
+
             while (_running)
             {
-                var currentTime = TimeHelper.GetCurrentTime();
-
-                if (!currentTime.IsTwoTime())
+                if (!_timeSync.IsCurrentlyTwoTime())
                 {
-                    await DelayUntilTwoTimeAsync(currentTime).FreeContext();
+                    await DelayUntilTwoTimeAsync().FreeContext();
                     continue;
                 }
 
-                await SendTwoTimeMessageAsync(currentTime).FreeContext();
-                _logger.Log("It's 2-time!! I've sent the tweet.");
+                await SendTwoTimeMessageAsync(nextMessage).FreeContext();
+                nextMessage = await FetchNextTwoTimeMessageAsync().FreeContext();
 
-                currentTime = TimeHelper.GetCurrentTime(); // Recalculate current time to account for the time spent sending the message
-                await DelayUntilTwoTimeAsync(currentTime).FreeContext();
+                await DelayUntilTwoTimeAsync().FreeContext();
             }
         }
 
@@ -53,17 +53,25 @@ namespace Logic
             return Task.CompletedTask;
         }
 
-        private Task DelayUntilTwoTimeAsync(DateTimeOffset currentTime)
+        private Task DelayUntilTwoTimeAsync()
         {
-            var timeUntilTwoTime = currentTime.GetTimeUntilNextTwoTime();
+            var timeUntilTwoTime = _timeSync.GetTimeUntilNextTwoTime();
             _logger.Log($"Waiting {timeUntilTwoTime} until next 2-time.");
             return Task.Delay(timeUntilTwoTime);
         }
 
-        private async Task SendTwoTimeMessageAsync(DateTimeOffset currentTime)
+        private async Task<TwoTimeMessage> FetchNextTwoTimeMessageAsync()
         {
-            var message = await _messageProvider.FetchRandomTwoTimeMessageAsync(currentTime).FreeContext();
-            await _outputClient.SendMessageAsync(message).FreeContext();
+            var nextMessage = await _messageProvider.FetchRandomTwoTimeMessageAsync().FreeContext();
+            _logger.Log($"Next 2-time message: \"{nextMessage.Text}\"");
+            return nextMessage;
+        }
+
+        private async Task<bool> SendTwoTimeMessageAsync(TwoTimeMessage message)
+        {
+            var result = await _outputClient.SendMessageAsync(message).FreeContext();
+            _logger.Log($"It's 2-time!! I just tweeted \"{message.Text}\"");
+            return result;
         }
     }
 }

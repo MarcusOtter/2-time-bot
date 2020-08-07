@@ -7,7 +7,7 @@ namespace Logic
 	/// <summary>
 	/// Provides access to the extension methods KeepContext() and FreeContext() to alias ConfigureAwait(true/false).
 	/// </summary>
-	public static class ConfigureAwaitHelper
+	public static class ConfigureAwaitHelpers
 	{
 		/// <summary>
 		/// Configures an awaiter to await a given task and captures the current context to make sure that

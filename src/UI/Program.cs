@@ -2,6 +2,7 @@
 using Logic.Logging;
 using Logic.OutputClients;
 using Logic.Storage;
+using Logic.Time;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -17,8 +18,9 @@ namespace UI
                 .AddSingleton<IStorage, InMemoryStorage>()
                 .AddSingleton<IOutputClient, TwitterOutputClient>()
                 .AddSingleton<ILogger, ConsoleLogger>()
-                .AddSingleton<HttpClient>()
-                .AddSingleton<IMessageProvider, MessageProvider>();
+                .AddSingleton<IMessageProvider, MessageProvider>()
+                .AddSingleton<ITimeSynchronization, TimeSynchronization>()
+                .AddSingleton<HttpClient>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
