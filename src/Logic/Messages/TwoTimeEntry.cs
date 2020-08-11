@@ -11,6 +11,6 @@ namespace Logic
         public DateTime? ReferenceDate { get; set; }
         public int? DaysAfterReferenceDate { get; set; }
         public int? DaysUntilReferenceDate { get; set; }
-        public TwoTimeMessage[]? TwoTimeMessages { get; set; }
+        public string[]? TwoTimeMessages { get; set; }
     }
 }

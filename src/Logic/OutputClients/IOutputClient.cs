@@ -4,6 +4,6 @@ namespace Logic.OutputClients
 {
     public interface IOutputClient
     {
-        Task<bool> SendMessageAsync(TwoTimeMessage message);
+        Task<bool> SendMessageAsync(string message);
     }
 }

@@ -60,17 +60,17 @@ namespace Logic
             return Task.Delay(timeUntilTwoTime);
         }
 
-        private async Task<TwoTimeMessage> FetchNextTwoTimeMessageAsync()
+        private async Task<string> FetchNextTwoTimeMessageAsync()
         {
             var nextMessage = await _messageProvider.FetchRandomTwoTimeMessageAsync().FreeContext();
-            _logger.Log($"Next 2-time message: \"{nextMessage.Text}\"");
+            _logger.Log($"Next 2-time message: \"{nextMessage}\"");
             return nextMessage;
         }
 
-        private async Task<bool> SendTwoTimeMessageAsync(TwoTimeMessage message)
+        private async Task<bool> SendTwoTimeMessageAsync(string message)
         {
             var result = await _outputClient.SendMessageAsync(message).FreeContext();
-            _logger.Log($"It's 2-time!! I just tweeted \"{message.Text}\"");
+            _logger.Log($"I just tweeted \"{message}\"");
             return result;
         }
     }

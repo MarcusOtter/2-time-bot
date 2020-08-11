@@ -10,16 +10,13 @@ namespace Logic
 {
     public interface IMessageProvider
     {
-        Task<TwoTimeMessage> FetchRandomTwoTimeMessageAsync();
+        Task<string> FetchRandomTwoTimeMessageAsync();
     }
 
     public class MessageProvider : IMessageProvider
     {
+        private const string _defaultTwoTimeMessage = "2-time!!! This one feels a bit odd... but UNTZ nonetheless!";
         private readonly Random _random = new Random();
-        private readonly TwoTimeMessage _defaultTwoTimeMessage = new TwoTimeMessage()
-        {
-            Text = "2-time!!! This one feels a bit odd... but UNTZ nonetheless!"
-        };
 
         private readonly HttpClient _httpClient;
         private readonly ITimeSynchronization _timeSync;
@@ -32,7 +29,7 @@ namespace Logic
             _messagesConfig = messagesConfig;
         }
 
-        public async Task<TwoTimeMessage> FetchRandomTwoTimeMessageAsync()
+        public async Task<string> FetchRandomTwoTimeMessageAsync()
         {
             var allTwoTimeEntires = await GetAllTwoTimeEntries().FreeContext();
             var output = _defaultTwoTimeMessage;
@@ -49,13 +46,11 @@ namespace Logic
                     // TODO: Check if we have sent this message recently
                     output = entry.TwoTimeMessages[randomIndex];
                 }
-                while (string.IsNullOrWhiteSpace(output.Text));
+                while (string.IsNullOrWhiteSpace(output));
             }
 
             return output;
         }
-
-
 
         private async Task<TwoTimeEntry[]> GetAllTwoTimeEntries()
         {
@@ -66,7 +61,6 @@ namespace Logic
             var stream = await response.Content.ReadAsStreamAsync().FreeContext();
             return await JsonSerializer.DeserializeAsync<TwoTimeEntry[]>(stream, _jsonSerializerOptions).FreeContext();
         }
-
 
         private readonly JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions()
         {

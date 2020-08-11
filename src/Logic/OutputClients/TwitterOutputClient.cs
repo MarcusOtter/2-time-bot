@@ -23,11 +23,11 @@ namespace Logic.OutputClients
             _twitterClient = new TwitterClient(config.ConsumerKey, config.ConsumerSecret, config.AccessToken, config.AccessSecret);
         }
 
-        public async Task<bool> SendMessageAsync(TwoTimeMessage message)
+        public async Task<bool> SendMessageAsync(string message)
         {
             var tweetParams = new PublishTweetParameters()
             {
-                Text = message.Text
+                Text = message
             };
 
             await _twitterClient.Tweets.PublishTweetAsync(tweetParams).FreeContext();
