@@ -1,4 +1,5 @@
 ﻿using Logic.Storage;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tweetinvi;
@@ -12,10 +13,10 @@ namespace Logic.OutputClients
 
         public TwitterOutputClient(IStorage storage)
         {
-            var hasConsumerKey    = storage.TryGet(StorageItemType.ConsumerKey,    out string consumerKey);
-            var hasConsumerSecret = storage.TryGet(StorageItemType.ConsumerSecret, out string consumerSecret);
-            var hasAccessToken    = storage.TryGet(StorageItemType.AccessToken,    out string accessToken);
-            var hasAccessSecret   = storage.TryGet(StorageItemType.AccessSecret,   out string accessSecret);
+            var hasConsumerKey    = storage.TryGet(StorageItemType.ConsumerKey,    out string? consumerKey);
+            var hasConsumerSecret = storage.TryGet(StorageItemType.ConsumerSecret, out string? consumerSecret);
+            var hasAccessToken    = storage.TryGet(StorageItemType.AccessToken,    out string? accessToken);
+            var hasAccessSecret   = storage.TryGet(StorageItemType.AccessSecret,   out string? accessSecret);
 
             if (!hasConsumerKey || !hasConsumerSecret || !hasAccessToken || !hasAccessSecret)
             {
