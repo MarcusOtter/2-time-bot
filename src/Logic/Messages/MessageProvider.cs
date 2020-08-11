@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Logic.Helpers;
 using Logic.Time;
+using Logic.Configuration;
 
 namespace Logic
 {
@@ -14,9 +15,6 @@ namespace Logic
 
     public class MessageProvider : IMessageProvider
     {
-        // TODO: Get this URL from config file, along with the tokens for twitter
-        private const string _twoTimeEntriesUrl = "https://raw.githubusercontent.com/MarcusOtter/2-time-bot/master/twoTimeEntires.json";
-
         private readonly Random _random = new Random();
         private readonly TwoTimeMessage _defaultTwoTimeMessage = new TwoTimeMessage()
         {
@@ -25,11 +23,13 @@ namespace Logic
 
         private readonly HttpClient _httpClient;
         private readonly ITimeSynchronization _timeSync;
+        private readonly IMessagesConfiguration _messagesConfig;
 
-        public MessageProvider(HttpClient httpClient, ITimeSynchronization timeSync)
+        public MessageProvider(HttpClient httpClient, ITimeSynchronization timeSync, IMessagesConfiguration messagesConfig)
         {
             _httpClient = httpClient;
             _timeSync = timeSync;
+            _messagesConfig = messagesConfig;
         }
 
         public async Task<TwoTimeMessage> FetchRandomTwoTimeMessageAsync()
@@ -59,7 +59,8 @@ namespace Logic
 
         private async Task<TwoTimeEntry[]> GetAllTwoTimeEntries()
         {
-            var response = await _httpClient.GetAsync(_twoTimeEntriesUrl).FreeContext();
+            var messagesUrl = _messagesConfig.MessagesUrl;
+            var response = await _httpClient.GetAsync(messagesUrl).FreeContext();
             response.EnsureSuccessStatusCode();
 
             var stream = await response.Content.ReadAsStreamAsync().FreeContext();
