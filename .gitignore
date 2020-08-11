@@ -352,3 +352,6 @@ MigrationBackup/
 # TODO+ Visual Studio Code extension
 **/*.todo
 **/TODO
+
+# Local appsettings (tokens, secrets, etc)
+appsettings.Development.json

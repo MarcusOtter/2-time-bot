@@ -1,6 +1,5 @@
-﻿using Logic.Storage;
+﻿using Logic.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tweetinvi;
 using Tweetinvi.Parameters;
@@ -11,19 +10,17 @@ namespace Logic.OutputClients
     {
         private readonly TwitterClient _twitterClient;
 
-        public TwitterOutputClient(IStorage storage)
+        public TwitterOutputClient(ITwitterConfiguration config)
         {
-            var hasConsumerKey    = storage.TryGet(StorageItemType.ConsumerKey,    out string? consumerKey);
-            var hasConsumerSecret = storage.TryGet(StorageItemType.ConsumerSecret, out string? consumerSecret);
-            var hasAccessToken    = storage.TryGet(StorageItemType.AccessToken,    out string? accessToken);
-            var hasAccessSecret   = storage.TryGet(StorageItemType.AccessSecret,   out string? accessSecret);
-
-            if (!hasConsumerKey || !hasConsumerSecret || !hasAccessToken || !hasAccessSecret)
+            if (string.IsNullOrWhiteSpace(config.ConsumerKey) ||
+                string.IsNullOrWhiteSpace(config.ConsumerSecret) ||
+                string.IsNullOrWhiteSpace(config.AccessToken) ||
+                string.IsNullOrWhiteSpace(config.AccessSecret))
             {
-                throw new KeyNotFoundException("Something went wrong in the storage which prevented twitter initialization");
+                throw new NullReferenceException("One or more of the fields in appsettings.json are empty. Please fill them out and try again.");
             }
 
-            _twitterClient = new TwitterClient(consumerKey, consumerSecret, accessToken, accessSecret);
+            _twitterClient = new TwitterClient(config.ConsumerKey, config.ConsumerSecret, config.AccessToken, config.AccessSecret);
         }
 
         public async Task<bool> SendMessageAsync(TwoTimeMessage message)

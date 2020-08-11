@@ -8,15 +8,6 @@ namespace Logic.Storage
     {
         private readonly Dictionary<StorageItemType, object> _objectDictionary = new Dictionary<StorageItemType, object>();
 
-        public InMemoryStorage()
-        {
-            // TODO: Make new persistent storage
-            Store(StorageItemType.ConsumerKey,    "REDACTED");
-            Store(StorageItemType.ConsumerSecret, "REDACTED");
-            Store(StorageItemType.AccessToken,    "REDACTED");
-            Store(StorageItemType.AccessSecret,   "REDACTED");
-        }
-
         public bool Contains(StorageItemType key)
         {
             return _objectDictionary.ContainsKey(key);
