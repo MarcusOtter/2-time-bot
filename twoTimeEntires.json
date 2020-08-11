@@ -3,27 +3,21 @@
         "referenceDate": "2020-06-18",
         "daysAfterReferenceDate": 222,
         "twoTimeMessages": [
-            {
-                "text": "It's been 222 days since my first tweet. Happy 2-time, friends!"
-            }
+            "It's been 222 days since my first tweet. Happy 2-time, friends!"
         ]
     },
     {
         "referenceDate": "2022-02-22",
         "daysUntilReferenceDate": 222,
         "twoTimeMessages": [
-            {
-                "text": "2day it is 222 days left until the last ultra 2-time of the century. Happy 2-time!"
-            }
+            "2day it is 222 days left until the last ultra 2-time of the century. Happy 2-time!"
         ]
     },
     {
         "referenceDate": "2022-02-22",
         "daysUntilReferenceDate": 22,
         "twoTimeMessages": [
-            {
-                "text": "Only 22 days left until the VERY LAST ultra 2-time of the century. Happy 2-time, and start planning your ultra 2-time parties!"
-            }
+            "Only 22 days left until the VERY LAST ultra 2-time of the century. Happy 2-time, and start planning your ultra 2-time parties!"
         ]
     },
     {
@@ -31,9 +25,7 @@
         "month": 2,
         "dayOfMonth": 2,
         "twoTimeMessages": [
-            {
-                "text": "What a time 2 be alive. 2022-02-02 22:22. Only one ultra 2-time left of the century!!"
-            }
+            "What a time 2 be alive. 2022-02-02 22:22. Only one ultra 2-time left of the century!!"
         ]
     },
     {
@@ -41,216 +33,104 @@
         "month": 2,
         "dayOfMonth": 22,
         "twoTimeMessages": [
-            {
-                "text": "IT'S 2022-02-22 22:22 AND IT'S THE LAST ULTRA 2-TIME OF THE CENTURY SO GET UP AND UNTZZZZZZZZ!!!"
-            }
+            "IT'S 2022-02-22 22:22 AND IT'S THE LAST ULTRA 2-TIME OF THE CENTURY SO GET UP AND UNTZZZZZZZZ!!!"
         ]
     },
     {
         "dayOfYear": 1,
         "twoTimeMessages": [
-            {
-                "text": "Happy new year and happy 2-time, friends!"
-            },
-            {
-                "text": "New year, new 2-time! Untz untz!"
-            },
-            {
-                "text": "Happy 2-time and happy new year! :)"
-            }
+            "Happy new year and happy 2-time, friends!",
+            "New year, new 2-time! Untz untz!",
+            "Happy 2-time and happy new year! :)"
         ]
     },
     {
         "dayOfYear": 222,
         "twoTimeMessages": [
-            {
-                "text": "Guess what? It's 2-time. AND WE'RE 222 DAYS IN2 THIS YEAR!! UNTZ UNTZ UNTZ"
-            },
-            {
-                "text": "It's 2-time on the 222nd day of the year, so get up and UNTZ!"
-            },
-            {
-                "text": "2-time on the 222nd of the year. UNTZ UNTZ UNTZ!"
-            }
+            "Guess what? It's 2-time. AND WE'RE 222 DAYS IN2 THIS YEAR!! UNTZ UNTZ UNTZ",
+            "It's 2-time on the 222nd day of the year, so get up and UNTZ!",
+            "2-time on the 222nd of the year. UNTZ UNTZ UNTZ!"
         ]
     },
     {
         "month": 2,
         "dayOfMonth": 1,
         "twoTimeMessages": [
-            {
-                "text": "We're starting the 2nd month of the year 2day! Happy 2-time!"
-            },
-            {
-                "text": "Month 2 of the year starts 2day! Untz 2+2 2-time!"
-            },
-            {
-                "text": "First 2-time of the 2nd month of the year! Happy 2-time! :)"
-            }
+            "We're starting the 2nd month of the year 2day! Happy 2-time!",
+            "Month 2 of the year starts 2day! Untz 2+2 2-time!",
+            "First 2-time of the 2nd month of the year! Happy 2-time! :)"
         ]
     },
     {
         "month": 2,
         "dayOfMonth": 2,
         "twoTimeMessages": [
-            {
-                "text": "2day is the 2nd day of the 2nd month this year, and it's 2-time!"
-            },
-            {
-                "text": "A special 2-time 2day, because it's the 2nd day of the 2nd month this year. Happy 2-time!"
-            },
-            {
-                "text": "2-time on the 2nd day of the 2nd month of the year. Untz untz untz!"
-            }
+            "2day is the 2nd day of the 2nd month this year, and it's 2-time!",
+            "A special 2-time 2day, because it's the 2nd day of the 2nd month this year. Happy 2-time!",
+            "2-time on the 2nd day of the 2nd month of the year. Untz untz untz!"
         ]
     },
     {
         "month": 2,
         "dayOfMonth": 22,
         "twoTimeMessages": [
-            {
-                "text": "2days 2-time comes with a lot of 2s. 02/22 22:22! Happy 2-time!"
-            },
-            {
-                "text": "We're 22 days in2 the 2nd month of the year. A very good 2-time 2day!"
-            },
-            {
-                "text": "Start untzing, because it's 2-time the 22nd of February. 02/22 22:22!"
-            }
+            "2days 2-time comes with a lot of 2s. 02/22 22:22! Happy 2-time!",
+            "We're 22 days in2 the 2nd month of the year. A very good 2-time 2day!",
+            "Start untzing, because it's 2-time the 22nd of February. 02/22 22:22!"
         ]
     },
     {
         "dayOfMonth": 2,
         "twoTimeMessages": [
-            {
-                "text": "2-time on the 2nd day of the month! Happy double 2s!"
-            },
-            {
-                "text": "2days 2-time is on the 2nd day of the month. Untz untz!"
-            },
-            {
-                "text": "2nd day of the month, happy 2-time!"
-            }
+            "2-time on the 2nd day of the month! Happy double 2s!",
+            "2days 2-time is on the 2nd day of the month. Untz untz!",
+            "2nd day of the month, happy 2-time!"
         ]
     },
     {
         "dayOfMonth": 22,
         "twoTimeMessages": [
-            {
-                "text": "It is now 2-time on the 22nd!!"
-            },
-            {
-                "text": "Untz untz untz, today's the 22nd and it's 2-time! :)"
-            },
-            {
-                "text": "2day we get a lot of 2s, because it's 22:22 on the 22nd! Happy 2-time!"
-            }
+            "It is now 2-time on the 22nd!!",
+            "Untz untz untz, today's the 22nd and it's 2-time! :)",
+            "2day we get a lot of 2s, because it's 22:22 on the 22nd! Happy 2-time!"
         ]
     },
     {
         "twoTimeMessages": [
-            {
-                "text": "It's 2-time time! Untz untz!"
-            },
-            {
-                "text": "2-tiiiiime!!! Untz untz untz!"
-            },
-            {
-                "text": "22:22! Happy 2-time friends!"
-            },
-            {
-                "text": "Happy 2-time! :)"
-            },
-            {
-                "text": "Untz with us 2+2 2-time!!"
-            },
-            {
-                "text": "2-time! Untz!"
-            },
-            {
-                "text": "2-time!"
-            },
-            {
-                "text": "It's 2-time!!"
-            },
-            {
-                "text": "Time 2² 2-time! Untz!!"
-            },
-            {
-                "text": "2-tiiiiime!!"
-            },
-            {
-                "text": "Untz untz untz untz 2-time 2-time 2-time 2-time!"
-            },
-            {
-                "text": "2-time! Time-2 untz!"
-            },
-            {
-                "text": "Time-2 untz, because it's 2-time!"
-            },
-            {
-                "text": "2-time 2-time 2-time 2-time!!"
-            },
-            {
-                "text": "2²/2-time!"
-            },
-            {
-                "text": "2*(222/222)²-time!"
-            },
-            {
-                "text": "The time is (2² + 2² + 2² + 2² + 2² + 2) : (2² + 2² + 2² + 2² + 2² + 2). UNTZ!"
-            },
-            {
-                "text": "We're 22 hours and 22 minutes in2 the day! Happy 2-time!"
-            },
-            {
-                "text": "22 hours and 22 minutes in2 this day. Untz untz untz!"
-            },
-            {
-                "text": "It's 2-time again!"
-            },
-            {
-                "text": "It's time (2+2) that time again. 2-time time!!"
-            },
-            {
-                "text": "2-time! :)"
-            },
-            {
-                "text": "The time is finally 22:22! Happy 2-time!"
-            },
-            {
-                "text": "Finally 2-time again! Untz untz untz untz!"
-            },
-            {
-                "text": "2-time, 2-time!"
-            },
-            {
-                "text": "The clock says 22-time:22-time. Untz!"
-            },
-            {
-                "text": "Another 2-time! Untz untz!"
-            },
-            {
-                "text": "Happy 2-time, friends!"
-            },
-            {
-                "text": "Do the 2-time dance!"
-            },
-            {
-                "text": "It's 2-time! Gather your friends and UNTZ!"
-            },
-            {
-                "text": "Untz untz untz, it's 2-time!"
-            },
-            {
-                "text": "Untz untz, time 2*2 2-time!"
-            },
-            {
-                "text": "You can never have 2 much 2-time. Happy 2-time!"
-            },
-            {
-                "text": "Time for 2days 2-time! Untz!"
-            }
+            "It's 2-time time! Untz untz!",
+            "2-tiiiiime!!! Untz untz untz!",
+            "22:22! Happy 2-time friends!",
+            "Happy 2-time! :)",
+            "Untz with us 2+2 2-time!!",
+            "2-time! Untz!",
+            "2-time!",
+            "It's 2-time!!",
+            "Time 2² 2-time! Untz!!",
+            "2-tiiiiime!!",
+            "Untz untz untz untz 2-time 2-time 2-time 2-time!",
+            "2-time! Time-2 untz!",
+            "Time-2 untz, because it's 2-time!",
+            "2-time 2-time 2-time 2-time!!",
+            "2²/2-time!",
+            "2*(222/222)²-time!",
+            "The time is (2² + 2² + 2² + 2² + 2² + 2) : (2² + 2² + 2² + 2² + 2² + 2). UNTZ!",
+            "We're 22 hours and 22 minutes in2 the day! Happy 2-time!",
+            "22 hours and 22 minutes in2 this day. Untz untz untz!",
+            "It's 2-time again!",
+            "It's time (2+2) that time again. 2-time time!!",
+            "2-time! :)",
+            "The time is finally 22:22! Happy 2-time!",
+            "Finally 2-time again! Untz untz untz untz!",
+            "2-time, 2-time!",
+            "The clock says 22-time:22-time. Untz!",
+            "Another 2-time! Untz untz!",
+            "Happy 2-time, friends!",
+            "Do the 2-time dance!",
+            "It's 2-time! Gather your friends and UNTZ!",
+            "Untz untz untz, it's 2-time!",
+            "Untz untz, time 2*2 2-time!",
+            "You can never have 2 much 2-time. Happy 2-time!",
+            "Time for 2days 2-time! Untz!"
         ]
     }
 ]
